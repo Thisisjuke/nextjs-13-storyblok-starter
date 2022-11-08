@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth scroll-py-4 md:scroll-py-16 xl:scroll-py-32;
+  }
+  body {
+    @apply font-sans;
+  }
+}
+
+@layer utilities {
+  .default-title {
+    @apply font-inter text-xl md:text-3xl font-bold;
+  }
+  .default-subtitle {
+    @apply text-lg md:text-xl font-normal;
+  }
+}

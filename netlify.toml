@@ -1,0 +1,10 @@
+[context.app]
+  command = "yarn build"
+  publish = ".next"
+
+[[context.app.plugins]]
+  package = "@netlify/plugin-sitemap"
+
+[context.storybook]
+  command = "yarn build-storybook"
+  publish = ".build-storybook"

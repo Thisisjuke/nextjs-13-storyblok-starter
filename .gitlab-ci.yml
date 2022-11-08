@@ -1,0 +1,44 @@
+stages:
+  - install
+  - deploy
+
+default:
+  image: node:lts
+
+.netlify_deploy:
+  stage: deploy
+  before_script:
+    - npm install -g netlify-cli @storybook/cli
+  cache:
+    paths:
+      - node_modules/
+    policy: pull
+
+install:
+  stage: install
+  script: yarn install
+  only:
+    - master
+  cache:
+    paths:
+      - node_modules/
+
+deploy:
+  extends: .netlify_deploy
+  script:
+    - netlify deploy --build --auth "$NETLIFY_AUTH_TOKEN" --site "$NETLIFY_DEV_SITE_ID" --prod --message "[$CI_COMMIT_SHORT_SHA] $CI_COMMIT_MESSAGE" --context app
+  environment:
+    name: production
+    url: https://$NETLIFY_DEV_SITE_DOMAIN/
+  only:
+    - master
+
+deploy-storybook:
+  extends: .netlify_deploy
+  script:
+    - netlify deploy --build --auth "$NETLIFY_AUTH_TOKEN" --site "$NETLIFY_STORYBOOK_SITE_ID" --prod --message "[$CI_COMMIT_SHORT_SHA] $CI_COMMIT_MESSAGE" --context storybook
+  environment:
+    name: storybook
+    url: https://$NETLIFY_DEV_SITE_DOMAIN/
+  only:
+    - master
