@@ -15,7 +15,7 @@ export const HeaderBlok = ({ blok }: HeaderDefaultBlokProps) => {
     <Row
       {...storyblokEditable(blok)}
       key={blok._uid}
-      className={'sticky pt-0 top-0 z-30'}
+      className={'sticky pt-0 top-0 z-30 bg-white'}
     >
       <Header
         links={menu}
