@@ -2,6 +2,7 @@ import '@splidejs/react-splide/css'
 import '../styles/tailwind.css'
 
 import { apiPlugin, storyblokInit } from '@storyblok/react'
+import { Analytics } from '@vercel/analytics/react'
 import type { AppProps } from 'next/app'
 
 import { PageBlokWrapper } from '../components/bloks/_utils/PageBlokWrapper'
@@ -35,6 +36,10 @@ initStoryblok()
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Component {...pageProps} />
+      <>
+          <Component {...pageProps} />
+          <Analytics />
+      </>
+
   )
 }
